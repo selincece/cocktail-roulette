@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Cocktail Recipe</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1> Random Cocktail Recipe</h1>
+      <p class="subtitle">Discover a new drink every time!</p>
+    </header>
+
+    <div class="cocktail-card">
+      <div class="cocktail-header">
+        <h2 class="cocktail-name"><%= cocktail.strDrink %></h2>
+        <% if (cocktail.strAlcoholic === "Alcoholic") { %>
+          <span class="badge alcoholic">Alcoholic</span>
+        <% } else { %>
+          <span class="badge non-alcoholic">Non-Alcoholic</span>
+        <% } %>
+      </div>
+
+      <div class="cocktail-image-container">
+        <img src="<%= cocktail.strDrinkThumb %>" alt="<%= cocktail.strDrink %>" class="cocktail-image">
+      </div>
+
+      <div class="cocktail-info">
+        <div class="ingredients-section">
+          <h3> Ingredients</h3>
+          <ul class="ingredients-list">
+            <% for (let i = 1; i <= 15; i++) { %>
+              <% if (cocktail['strIngredient' + i]) { %>
+                <li class="ingredient-item">
+                  <span class="measure"><%= cocktail['strMeasure' + i] || '' %></span>
+                  <span class="ingredient"><%= cocktail['strIngredient' + i] %></span>
+                </li>
+              <% } %>
+            <% } %>
+          </ul>
+        </div>
+
+        <div class="instructions-section">
+          <h3> Instructions</h3>
+          <p class="instructions"><%= cocktail.strInstructions %></p>
+        </div>
+
+        <% if (cocktail.strGlass) { %>
+          <div class="glass-section">
+            <h3> Glass Type</h3>
+            <p class="glass-type"><%= cocktail.strGlass %></p>
+          </div>
+        <% } %>
+      </div>
+
+      <div class="refresh-section">
+        <a href="/" class="refresh-button"> Get Another Random Cocktail</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
